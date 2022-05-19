@@ -9,6 +9,9 @@ import { faHeart as SolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faAngleDown, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ShippingInfo from "./ShippingInfo";
+import { useState } from "react";
+import { element } from "prop-types";
 
 const SProductHeader = styled.div`
   max-width: 1200px;
@@ -96,30 +99,6 @@ const DiscountRate = styled.span`
   margin-right: 10px;
 `;
 
-const ShippingInfo = styled.div`
-  padding-top: 30px;
-  padding-bottom: 16px;
-  span {
-    font-size: ${(props) => props.theme.fs_body4};
-    font-weight: ${(props) => props.theme.fw_bold};
-  }
-`;
-
-const ShippingDetail = styled.div`
-  padding-top: 10px;
-  display: flex;
-  div {
-    width: 70px;
-  }
-  span {
-    font-size: ${(props) => props.theme.fs_body5};
-    font-weight: ${(props) => props.theme.fw_medium};
-  }
-  sub {
-    width: 400px;
-  }
-`;
-
 const OptionContainer = styled.div`
   padding-top: 10px;
 `;
@@ -133,6 +112,39 @@ const SelectBox = styled.select`
   background-color: ${(props) => props.theme.bgColor};
   border-radius: 2px;
   border-color: ${(props) => props.theme.borderColor};
+  :focus {
+    outline: none;
+  }
+`;
+
+const ColorOption = styled.option``;
+const SizeOption = styled.option``;
+
+const ItemContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+const ItemArray = styled.ul`
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+  width: 100%;
+  justify-content: space-between;
+  span {
+    margin: 0px 20px;
+  }
+  li {
+    margin: 4px 0px;
+  }
+  button {
+    background-color: ${(props) => props.theme.bgColor};
+    color: black;
+    border: solid 1px ${(props) => props.theme.borderColor};
+    padding: 4px 10px;
+  }
+`;
+const Item = styled.li`
+  display: flex;
 `;
 
 const ButtonContainer = styled.div`
@@ -169,40 +181,99 @@ const BuyButton = styled.span`
   }
 `;
 
-function ShippingComments({ data }) {
-  console.log(data?.seeDetail.brand.freeShipping);
-  if (data?.seeDetail.brand.freeShipping) {
-    if (data?.seeDetail.brand.additionalShippingCost === 0) {
-      return <sub>"무료배송 + 도서산간 추가비용 없음"</sub>;
-    }
-
-    return (
-      <sub>{`무료배송 + 도서산간 추가비용${data?.seeDetail.brand.additionalShippingCost}원`}</sub>
-    );
-  }
-  if (data?.seeDetail.brand.conditionalShipping) {
-    if (data?.seeDetail.brand.additionalShippingCost === 0) {
-      return (
-        <sub>{`${data?.seeDetail.brand.conditionalShippingAmount}원 이상 구매시 무료 + 도서산간 추가비용 없음`}</sub>
-      );
-    }
-
-    return (
-      <sub>{`${data?.seeDetail.brand.conditionalShippingAmount}원 이상 구매시 무료 + 도서산간 추가비용${data?.seeDetail.brand.additionalShippingCost}원`}</sub>
-    );
-  }
-  if (data?.seeDetail.brand.additionalShippingCost === 0) {
-    return (
-      <sub>{`배송비 ${data?.seeDetail.brand.shippingCost}원  도서산간 추가비용 없음`}</sub>
-    );
-  } else {
-  }
-  return (
-    <sub>{`배송비 ${data?.seeDetail.brand.shippingCost}원 + 도서산간 추가비용${data?.seeDetail.brand.additionalShippingCost}원`}</sub>
-  );
-}
-
 function ProductHeader({ data }) {
+  const [color, setColor] = useState("색상");
+  const [size, setSize] = useState("사이즈");
+
+  const select_color = document.getElementById("select-color");
+  const select_size = document.getElementById("select-size");
+  const itemArray = document.getElementById("item-array");
+
+  const handleColorChange = (e) => {
+    setColor(e.target.value);
+  };
+
+  // Item delete
+  function deleteItem(event) {
+    event.preventDefault();
+    const li = event.target.parentElement; // 지워야할 부모인자
+    li.remove();
+  }
+
+  // Item plus
+  function plusItem(event) {
+    event.preventDefault();
+    const originalValue = parseInt(
+      event.target.parentElement.children[3].innerText
+    );
+    event.target.parentElement.children[3].innerText = originalValue + 1;
+  }
+
+  // Item Minus
+  function minusItem(event) {
+    event.preventDefault();
+    const originalValue = parseInt(
+      event.target.parentElement.children[3].innerText
+    );
+    if (event.target.parentElement.children[3].innerText === "1") {
+      event.target.parentElement.children[3].innerText = 1;
+    } else {
+      event.target.parentElement.children[3].innerText = originalValue - 1;
+    }
+  }
+
+  // Each Item 요소
+  function paintItem(color, size) {
+    const li = document.createElement("li");
+    const itemColor = document.createElement("span");
+    itemColor.innerText = color;
+    const itemSize = document.createElement("span");
+    itemSize.innerText = size;
+
+    const minusButton = document.createElement("button");
+    minusButton.innerText = "-";
+    minusButton.addEventListener("click", minusItem);
+    const itemCount = document.createElement("span");
+    itemCount.innerText = "1";
+    const plusButton = document.createElement("button");
+    plusButton.innerText = "+";
+    plusButton.addEventListener("click", plusItem);
+
+    const ItemPrice = document.createElement("span");
+    ItemPrice.innerText = data.seeDetail.price;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "X";
+    deleteButton.addEventListener("click", deleteItem);
+
+    li.appendChild(itemColor);
+    li.appendChild(itemSize);
+    li.appendChild(minusButton);
+    li.appendChild(itemCount);
+    li.appendChild(plusButton);
+    li.appendChild(ItemPrice);
+    li.appendChild(deleteButton);
+
+    itemArray.appendChild(li);
+  }
+
+  const handleSizeChange = (e) => {
+    setSize(e.target.value);
+    // 색상 탭 초기화
+    if (data?.seeDetail.colors.length !== 0) {
+      paintItem(color, e.target.value);
+      select_color.value = "색상";
+      setColor("색상");
+
+      setSize("사이즈");
+      select_size.value = "사이즈";
+    } else {
+      paintItem(" ", e.target.value);
+      setSize("사이즈");
+      select_size.value = "사이즈";
+    }
+  };
+
   return (
     <SProductHeader>
       <ThumbnailPic src={data?.seeDetail.thumbnail}></ThumbnailPic>
@@ -275,41 +346,40 @@ function ProductHeader({ data }) {
             </FlexBox>
           </DisPriceContainer>
         )}
-        <ShippingInfo>
-          <span>배송정보</span>
-          <ShippingDetail>
-            <div>
-              <span>배송비</span>
-            </div>
-            <ShippingComments data={data}></ShippingComments>
-          </ShippingDetail>
-          <ShippingDetail>
-            <div>
-              <span>발송예정</span>
-            </div>
-            <sub>
-              {data?.seeDetail.brand.shippingDay}일 이내 출고 (주말,공휴일제외)
-            </sub>
-          </ShippingDetail>
-        </ShippingInfo>
+        <ShippingInfo data={data}></ShippingInfo>
         <OptionContainer>
           <form>
-            <SelectBox>
-              <option>색상</option>
-              {data?.seeDetail.colors.map((color) => (
-                <option key={color.id} id={color.id}>
-                  {color.name}
-                </option>
-              ))}
-            </SelectBox>
-            <SelectBox onClick={console.log()}>
+            {data?.seeDetail.colors.length === 0 ? null : (
+              <SelectBox onChange={handleColorChange} id="select-color">
+                <option>색상</option>
+                {data?.seeDetail.colors.map((color) => (
+                  <ColorOption key={color.id} id={color.id}>
+                    {color.name}
+                  </ColorOption>
+                ))}
+              </SelectBox>
+            )}
+
+            <SelectBox onChange={handleSizeChange} id="select-size">
               <option>사이즈</option>
-              {data?.seeDetail.sizes.map((size) => (
-                <option key={size.id} id={size.id}>
-                  {size.name}
-                </option>
-              ))}
+              1. 컬러가 없다면, 그냥 리스트 출력,
+              {data?.seeDetail.colors.length === 0
+                ? data?.seeDetail.sizes.map((size) => (
+                    <SizeOption key={size.id} id={size.id}>
+                      {size.name}
+                    </SizeOption>
+                  ))
+                : color === "색상"
+                ? null
+                : data?.seeDetail.sizes.map((size) => (
+                    <SizeOption key={size.id} id={size.id}>
+                      {size.name}
+                    </SizeOption>
+                  ))}
             </SelectBox>
+            <ItemContainer>
+              <ItemArray id="item-array"></ItemArray>
+            </ItemContainer>
             <ButtonContainer>
               <span>장바구니</span>
               <BuyButton>바로 구매하기</BuyButton>

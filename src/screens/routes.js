@@ -6,5 +6,6 @@ const routes = {
   myHeart: "/my-heart",
   cart: "/cart",
   product: "/product/:id",
+  quiz: "/quiz",
 };
 export default routes;

@@ -16,6 +16,9 @@ import SignUp from "./screens/SignUp";
 import { darkTheme, GlobalStyles, lightTheme } from "./styles";
 import User from "./screens/MyPage";
 import MyPage from "./screens/MyPage";
+import Quiz from "./screens/Quiz";
+import QuizHeader from "./components/header/QuizHeader";
+import QuizLayout from "./components/QuizLayout";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -59,6 +62,18 @@ function App() {
                   <Product></Product>
                 </Layout>
               </Route>
+              {!isLoggedIn ? (
+                <Route path={routes.signUp} exact>
+                  <SignUp />
+                </Route>
+              ) : (
+                <Route path={routes.quiz} exact>
+                  <QuizLayout>
+                    <Quiz></Quiz>
+                  </QuizLayout>
+                </Route>
+              )}
+
               <Route>
                 <NotFound></NotFound>
               </Route>

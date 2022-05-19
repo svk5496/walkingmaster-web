@@ -10,6 +10,7 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faAngleDown, faStar } from "@fortawesome/free-solid-svg-icons";
 import BrandContainer from "../components/product/brand/BrandContainer";
 import ProductHeader from "../components/product/productHeader/ProductHeader";
+import PageTitle from "../components/pageTitle";
 
 const SEEDETAIL_QUERY = gql`
   query seeDetail($id: Int!) {
@@ -37,9 +38,11 @@ const SEEDETAIL_QUERY = gql`
         conditionalShipping
       }
       colors {
+        id
         name
       }
       sizes {
+        id
         name
       }
       onSale
@@ -145,29 +148,31 @@ function Product() {
   // );
 
   return (
-    <ProductContainer>
-      <Link to="#">
-        {loading ? null : <BrandContainer data={data}></BrandContainer>}
-      </Link>
-      {loading ? null : (
-        <LoadingContainer>
-          <ProductHeader data={data}></ProductHeader>
+    <div>
+      <ProductContainer>
+        <Link to="#">
+          {loading ? null : <BrandContainer data={data}></BrandContainer>}
+        </Link>
+        {loading ? null : (
+          <LoadingContainer>
+            <ProductHeader data={data}></ProductHeader>
 
-          <ProductDetailContainer>
-            <ProductDetail1>
-              <div dangerouslySetInnerHTML={createDetail1()}></div>
-            </ProductDetail1>
-            <ShowDetailBt>
-              상품설명 더보기
-              <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
-            </ShowDetailBt>
-            <ProductDetail2>
-              <div dangerouslySetInnerHTML={createDetail2()}></div>
-            </ProductDetail2>
-          </ProductDetailContainer>
-        </LoadingContainer>
-      )}
-    </ProductContainer>
+            <ProductDetailContainer>
+              <ProductDetail1>
+                <div dangerouslySetInnerHTML={createDetail1()}></div>
+              </ProductDetail1>
+              <ShowDetailBt>
+                상품설명 더보기
+                <FontAwesomeIcon icon={faAngleDown}></FontAwesomeIcon>
+              </ShowDetailBt>
+              <ProductDetail2>
+                <div dangerouslySetInnerHTML={createDetail2()}></div>
+              </ProductDetail2>
+            </ProductDetailContainer>
+          </LoadingContainer>
+        )}
+      </ProductContainer>
+    </div>
   );
 }
 
