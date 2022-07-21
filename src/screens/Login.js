@@ -8,8 +8,8 @@ import { logUserIn } from "../apollo";
 import AuthBottomBox from "../components/auth/AuthBottomBox";
 import AuthButton from "../components/auth/AuthButton";
 import AuthFormBox from "../components/auth/AuthFormBox";
-import AuthFormError from "../components/auth/AuthFormError";
-import AuthInput from "../components/auth/AuthInput";
+import FormError from "../components/shared/FormError";
+import StyledInput from "../components/shared/StyledInput";
 import AuthLayout from "../components/auth/AuthLayout";
 import Seperator from "../components/auth/Seperator";
 import PageTitle from "../components/pageTitle";
@@ -94,7 +94,7 @@ function Login() {
           </div> */}
         <Notification>{location?.state?.message}</Notification>
         <form onSubmit={handleSubmit(onSubmitValid, onSubmitInvalid)}>
-          <AuthInput
+          <StyledInput
             ref={register({
               required: "이메일을 입력해주세요",
               minLength: { value: 5, message: "5자 이상 입력해주세요" },
@@ -106,8 +106,8 @@ function Login() {
             placeholder="이메일"
             hasError={Boolean(errors?.username?.message)}
           />
-          <AuthFormError message={errors?.username?.message}></AuthFormError>
-          <AuthInput
+          <FormError message={errors?.username?.message}></FormError>
+          <StyledInput
             ref={register({ required: "비밀번호를 입력해주세요" })}
             name="password"
             type="password"
@@ -115,13 +115,13 @@ function Login() {
             onChange={() => clearErrors("result")}
             hasError={Boolean(errors?.username?.message)}
           />
-          <AuthFormError message={errors?.password?.message}></AuthFormError>
+          <FormError message={errors?.password?.message}></FormError>
           <AuthButton
             type="submit"
             value="Log in"
             disabled={!formState.isValid || loading}
           />
-          <AuthFormError message={errors?.result?.message}></AuthFormError>
+          <FormError message={errors?.result?.message}></FormError>
         </form>
         <Seperator />
         <FacebookLogin>

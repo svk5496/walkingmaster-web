@@ -17,8 +17,9 @@ import { darkTheme, GlobalStyles, lightTheme } from "./styles";
 import User from "./screens/MyPage";
 import MyPage from "./screens/MyPage";
 import Quiz from "./screens/Quiz";
-import QuizHeader from "./components/header/QuizHeader";
-import QuizLayout from "./components/QuizLayout";
+import AdminStore from "./screens/admin/AdminStore";
+import AdminLayout from "./components/admin/AdminLayout";
+import AdminLogin from "./screens/admin/AdminLogin";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -68,11 +69,50 @@ function App() {
                 </Route>
               ) : (
                 <Route path={routes.quiz} exact>
-                  <QuizLayout>
-                    <Quiz></Quiz>
-                  </QuizLayout>
+                  <Quiz></Quiz>
                 </Route>
               )}
+
+              {isLoggedIn ? (
+                <>
+                  <Route path={routes.admin} exact>
+                    <AdminLayout>
+                      <AdminStore></AdminStore>
+                    </AdminLayout>
+                  </Route>
+                  {/* 관리자 유저관리
+                  <Route path={routes.adminUser} exact>
+                    <AdminLayout>
+                      <UserListLayout></UserListLayout>
+                    </AdminLayout>
+                  </Route>
+                  <Route path={routes.adminUserEdit} exact>
+                    <AdminLayout>
+                      <UserDetail></UserDetail>
+                    </AdminLayout>
+                  </Route> */}
+                  {/* 관리자 상품관리
+                  <Route path={routes.adminProduct} exact>
+                    <AdminLayout>
+                      <ProductListLayout></ProductListLayout>
+                    </AdminLayout>
+                  </Route>
+                  <Route path={routes.adminProductEdit} exact>
+                    <AdminLayout>
+                      <ProductDetail></ProductDetail>
+                    </AdminLayout>
+                  </Route>
+                  <Route path={routes.adminProductNew} exact>
+                    <AdminLayout>
+                      <ProductUploadLayout></ProductUploadLayout>
+                    </AdminLayout>
+                  </Route> */}
+                </>
+              ) : (
+                <AdminLogin></AdminLogin>
+              )}
+
+              <Route></Route>
 
               <Route>
                 <NotFound></NotFound>

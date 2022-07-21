@@ -8,6 +8,24 @@ export const WhiteBox = styled.div`
 
 export const FlexBox = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const FlexColumBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const StyledButton = styled.div`
+  width: 100%;
+  height: 40px;
+  border-radius: 4px;
+  span {
+    font-size: 14px;
+  }
 `;
 
 export function numberWithCommas(obj) {

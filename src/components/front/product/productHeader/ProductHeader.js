@@ -3,7 +3,7 @@ import {
   FlexBox,
   numberWithCommas,
   roundNumber,
-} from "../../shared";
+} from "../../../shared";
 import styled from "styled-components";
 import { faHeart as SolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";

@@ -11,6 +11,8 @@ const SHeader = styled.header`
   visibility: block;
   background-color: ${(props) => props.theme.bgColor};
   position: absolute;
+  top: 0px;
+  left: 0px;
 `;
 
 const Wrapper = styled.div`
@@ -54,6 +56,7 @@ const MenuContainer = styled.div`
     font-size: ${(props) => props.theme.fs_body5};
     cursor: pointer;
     margin-top: 14px;
+    text-decoration: none;
   }
 `;
 
@@ -86,30 +89,20 @@ const EventBox = styled.div`
   }
 `;
 
-function StepWearLayout() {
+function ShoeLayout() {
   return (
     <SHeader>
       <Wrapper>
         <LeftBox>
           <MenuContainer>
-            <h1>Step1</h1>
-            <p>가볍게 한번 사용해보세요!</p>
-            <span>백모리폼</span>
-            <span>스티커깔창</span>
+            <h1>MulKung</h1>
+            <p>언제나 어디서나 오직 편안함</p>
+            <span>물컹 오리지날</span>
           </MenuContainer>
           <MenuContainer>
-            <h1>Step2</h1>
-            <p>족저근막염에 특화되어 있는 깔창입니다</p>
-            <span>벌집깔창1</span>
-            <span>벌집깔창2</span>
-            <span>현모리폼</span>
-          </MenuContainer>
-          <MenuContainer>
-            <h1>Step3</h1>
-            <p>자세교정에 탁월한 효과가 있는 깔창입니다</p>
-            <span>L23</span>
-            <span>L24</span>
-            <span>L7</span>
+            <h1>KiEchobe</h1>
+            <p>딱풀접지력</p>
+            <span>키에코비</span>
           </MenuContainer>
         </LeftBox>
         <RightBox>
@@ -123,4 +116,4 @@ function StepWearLayout() {
   );
 }
 
-export default StepWearLayout;
+export default ShoeLayout;

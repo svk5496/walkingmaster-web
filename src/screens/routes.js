@@ -7,5 +7,8 @@ const routes = {
   cart: "/cart",
   product: "/product/:id",
   quiz: "/quiz",
+  admin: "/rhksflwkdjemals",
+  adminStore: "/rhksflwkdjemals/store",
+  adminLogin: "/admin-login",
 };
 export default routes;

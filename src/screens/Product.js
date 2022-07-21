@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as SolidHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { faAngleDown, faStar } from "@fortawesome/free-solid-svg-icons";
-import BrandContainer from "../components/product/brand/BrandContainer";
-import ProductHeader from "../components/product/productHeader/ProductHeader";
+import BrandContainer from "../components/front/product/brand/BrandContainer";
+import ProductHeader from "../components/front/product/productHeader/ProductHeader";
 import PageTitle from "../components/pageTitle";
 
 const SEEDETAIL_QUERY = gql`
