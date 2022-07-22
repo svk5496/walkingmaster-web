@@ -20,6 +20,11 @@ import Quiz from "./screens/Quiz";
 import AdminStore from "./screens/admin/AdminStore";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminLogin from "./screens/admin/AdminLogin";
+import UserListLayout from "./screens/admin/user/UserListLayout";
+import UserDetail from "./screens/admin/user/UserDetail";
+import ProductListLayout from "./screens/admin/product/ProductListLayout";
+import ProductDetail from "./screens/admin/product/ProductDetail";
+import ProductUploadLayout from "./screens/admin/product/ProductUploadLayout";
 
 function App() {
   const isLoggedIn = useReactiveVar(isLoggedInVar);
@@ -80,7 +85,7 @@ function App() {
                       <AdminStore></AdminStore>
                     </AdminLayout>
                   </Route>
-                  {/* 관리자 유저관리
+                  {/* 관리자 유저관리 */}
                   <Route path={routes.adminUser} exact>
                     <AdminLayout>
                       <UserListLayout></UserListLayout>
@@ -90,8 +95,8 @@ function App() {
                     <AdminLayout>
                       <UserDetail></UserDetail>
                     </AdminLayout>
-                  </Route> */}
-                  {/* 관리자 상품관리
+                  </Route>
+                  {/* 관리자 상품관리 */}
                   <Route path={routes.adminProduct} exact>
                     <AdminLayout>
                       <ProductListLayout></ProductListLayout>
@@ -106,7 +111,7 @@ function App() {
                     <AdminLayout>
                       <ProductUploadLayout></ProductUploadLayout>
                     </AdminLayout>
-                  </Route> */}
+                  </Route>
                 </>
               ) : (
                 <AdminLogin></AdminLogin>

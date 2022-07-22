@@ -7,8 +7,8 @@ const SFormError = styled.span`
   margin: 5px 0px 10px 0px;
 `;
 
-function AuthFormError({ message }) {
+function FormError({ message }) {
   return message === "" || !message ? null : <SFormError>{message}</SFormError>;
 }
 
-export default AuthFormError;
+export default FormError;

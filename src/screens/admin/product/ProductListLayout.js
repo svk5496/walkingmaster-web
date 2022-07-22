@@ -4,7 +4,7 @@ import "react-calendar/dist/Calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import ProductList from "./ProductList";
+import ProductList from "../../../components/admin/product/ProductList";
 
 const Layer = styled.div`
   width: 100%;

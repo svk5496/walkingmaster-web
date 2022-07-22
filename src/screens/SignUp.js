@@ -6,7 +6,6 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { darkModeVar, isLoggedInvar } from "../apollo";
 import AuthBottomBox from "../components/auth/AuthBottomBox";
-import AuthButton from "../components/auth/AuthButton";
 import AuthFormBox from "../components/auth/AuthFormBox";
 import StyledInput from "../components/shared/StyledInput";
 import AuthLayout from "../components/auth/AuthLayout";
@@ -16,6 +15,20 @@ import routes from "./routes";
 
 const Subtitle = styled.h3`
   font-weight: 600;
+`;
+
+const AuthButton = styled.input`
+  border: none;
+  border-radius: 3px;
+
+  margin-top: 12px;
+  background-color: ${(props) => props.theme.secondary};
+  color: white;
+  text-align: center;
+  padding: 8px 0px;
+  font-weight: 600;
+  width: 100%;
+  opacity: ${(props) => (props.disabled ? "0.2" : "1")};
 `;
 
 const CREATE_ACCOUNT_MUTATION = gql`

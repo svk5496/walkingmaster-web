@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import { useForm } from "react-hook-form";
-import AuthButton from "../../auth/AuthButton";
 import { useParams } from "react-router-dom";
-import { HiddenInput } from "../../shared";
+import { HiddenInput } from "../../shared/shared";
 import { useState } from "react";
 
 const ProductInput = styled.input`
@@ -70,6 +69,19 @@ const UploadFormBox = styled.div`
     flex-direction: column;
     align-items: center;
   }
+`;
+const AuthButton = styled.input`
+  border: none;
+  border-radius: 3px;
+
+  margin-top: 12px;
+  background-color: ${(props) => props.theme.secondary};
+  color: white;
+  text-align: center;
+  padding: 8px 0px;
+  font-weight: 600;
+  width: 100%;
+  opacity: ${(props) => (props.disabled ? "0.2" : "1")};
 `;
 
 const SEE_PRODUCT_DETAIL_QUERY = gql`

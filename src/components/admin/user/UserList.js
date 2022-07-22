@@ -181,17 +181,7 @@ function UserList({ data }) {
         <Base>
           <span>총 {data?.seeUsers?.totalUsers}명</span>
 
-          <ButtonContainer>
-            <Link to={routes.adminProductNew}>
-              <PlaceOrderBt>
-                <span>신규 고객 등록</span>
-              </PlaceOrderBt>
-            </Link>
-
-            <DeleteBt onClick={deleteBt}>
-              <span>삭제</span>
-            </DeleteBt>
-          </ButtonContainer>
+          <ButtonContainer></ButtonContainer>
           <SubjectContainer>
             <label>
               <input

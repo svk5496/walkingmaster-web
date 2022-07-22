@@ -22,7 +22,7 @@ const AdminBox = styled.div`
   height: 95%;
   background-color: ${(props) => props.theme.bgColorLight};
   display: flex;
-  border-radius: 20px;
+  border-radius: 5px;
   overflow: hidden;
 `;
 

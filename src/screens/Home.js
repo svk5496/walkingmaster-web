@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as SolidHeart } from "@fortawesome/free-solid-svg-icons";
 
 import { faHeart, faMessage } from "@fortawesome/free-regular-svg-icons";
-import { numberWithCommas, roundNumber } from "../components/shared";
+import { numberWithCommas, roundNumber } from "../components/shared/shared";
 import { bool, number, symbol } from "prop-types";
 import { Link } from "react-router-dom";
 import PageTitle from "../components/pageTitle";

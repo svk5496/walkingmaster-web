@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { WhiteBox } from "../shared";
+import { WhiteBox } from "../shared/shared";
 
 const SBottomBox = styled(WhiteBox)`
   padding: 20px 0px;

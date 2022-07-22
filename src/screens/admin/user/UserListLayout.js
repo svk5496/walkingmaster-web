@@ -4,10 +4,15 @@ import "react-calendar/dist/Calendar.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { gql, useLazyQuery, useQuery } from "@apollo/client";
-import UserList from "./UserList";
+import UserList from "../../../components/admin/user/UserList";
 import Pagination from "react-js-pagination";
 import "bootstrap/dist/css/bootstrap.css";
-import { PaginationBox, RowFlexBox, StyledSelect } from "../../shared";
+import {
+  HiddenInput,
+  PaginationBox,
+  RowFlexBox,
+  StyledSelect,
+} from "../../../components/shared/shared";
 import {
   beforeEntire,
   beforeHalf,
@@ -18,10 +23,9 @@ import {
   myEndDate,
   myStartDate,
   week,
-} from "../../sharedFunction";
+} from "../../../components/shared/sharedFunction";
 import DatePicker from "react-datepicker";
 import { ko } from "date-fns/esm/locale";
-import { HiddenInput } from "../../shared";
 
 const Layer = styled.div`
   width: 100%;
